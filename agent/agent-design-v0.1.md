@@ -183,6 +183,6 @@ flowchart LR
 | Feedback | Separate research, application, recruiter, interview, offer, and candidate-assessment events. |
 | Safeguards | Candidate control, privacy scope, no protected-attribute inference, and no automatic submission. |
 
-## Design status
+## Design status v0.1
 
 The decision model and diagrams are complete as a conceptual baseline. Thresholds, value trade-offs, research costs, data sources, evaluation metrics, and any probability estimates remain hypotheses that require research, testing, and appropriate legal, privacy, and fairness review.
