@@ -47,7 +47,7 @@ The design is intentionally non-predictive at this stage. Any numerical probabil
 ## Where to look
 
 * [agent/agent-design-v0.1.md](agent/agent-design-v0.1.md) — the current agent design: problem, inputs, hidden states, beliefs, actions, costs, policy, feedback, human reasoning, and architecture diagrams.
-* [research/research_file.md](reseach/research_file.md) — research questions, initial research goal, principles, findings, implications, sources, and supported versus uncertain assumptions.
+* [research/research_file.md](research/research_file.md) — research questions, initial research goal, principles, findings, implications, sources, and supported versus uncertain assumptions.
 
 ## Safety and scope
 
