@@ -1,0 +1,115 @@
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+\usepackage{ijcai26}
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\urlstyle{same}
+% Tectonic uses XeTeX; preserve the official metadata block through its PDF special.
+\providecommand{\pdfinfo}[1]{\special{pdf:docinfo << #1 >>}}
+\pdfinfo{/TemplateVersion (IJCAI.2026.0)}
+
+\title{An Uncertainty-Aware Job-Application Decision Agent:\\A Candidate-Controlled Course Preprint}
+\author{Course Project Team
+\affiliations
+Independent Course Project\\}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study one specific candidate-side problem: given one r\'esum\'e and one exact job posting, recommend the next action without pretending to know whether the employer will interview or hire the candidate. The proposed agent extracts cited evidence, represents decision-relevant gaps as uncertainty, and applies frozen rules to choose exactly one of Apply, Research, Request human help, or Skip. A 16-case development replay compares the four-action policy with a binary mandatory-match baseline. The baseline agreed with evaluator-confirmed actions on 4/16 cases and incurred 1105 hypothetical cost units, chiefly through 11 incorrect Skips; the four-action policy agreed on 16/16 and cost 35 units. These are debugging results, not independent validation: labels were confirmed after policy outputs, the set has no expected Apply cases, and costs are elicited assumptions. The contribution is an executable, auditable decision process that preserves human control and exposes opportunity-denial failures, not a claim of hiring prediction, fairness, IJCAI submission, or acceptance.
+\end{abstract}
+
+\section{Introduction}
+Job seekers routinely decide whether to apply when public evidence is incomplete. A r\'esum\'e may omit truthful experience; ``required'' experience may admit equivalents; a live page may describe a paused vacancy. A binary matcher can collapse these unknowns into rejection, although an incorrect Skip can permanently remove an option. We therefore study a narrower problem: recommend the candidate's \emph{next information-aware action}, not an employment outcome.
+
+The agent is advisory. It neither ranks applicants for an employer nor submits applications. Its software separates model-based evidence extraction from deterministic action selection and treats text embedded in a r\'esum\'e or job page as untrusted data. The course artifact contains the implementation in \texttt{src/job\_agent}, tests in \texttt{tests}, and the reproducible notebook \texttt{notebooks/job\_agent\_demo.ipynb}. No public project URL is asserted because no verified public repository link was available.
+
+\section{Related Work and User Discussions}
+Raghavan et al. examine the gap between fairness claims and substantiated practice in algorithmic hiring, motivating restraint about constructs and validation claims \cite{raghavan2020}. The NIST AI Risk Management Framework emphasizes contextual risk, lifecycle governance, measurement, and management \cite{nist2023}. EEOC guidance warns that selection procedures can unlawfully discriminate and that algorithmic tools can create disability-related barriers \cite{eeoc_selection,eeoc_ada}. Although our tool is candidate-side rather than employer-side, its advice can still affect access to opportunity.
+
+Three public Reddit discussions were recorded. Two questions---about unrealistic workflow assumptions and confidence calibration---had no visible reply at the recorded access time, so they caused no design change \cite{reddit_assumptions,reddit_calibration}. In a third discussion, commenters suggested flagging missing or contradictory information, escalating close hard-requirement judgments, and testing disagreement across reasoning passes \cite{reddit_agents}. We adopted explicit uncertainty and human escalation, deferred multi-pass voting because reviewer validity was untested, and rejected suggested age-range scoring as irrelevant and potentially discriminatory. These anecdotes generated hypotheses; they did not validate probabilities or thresholds.
+
+\section{Agent Design}
+\paragraph{Input.} The input is one permitted candidate r\'esum\'e, one exact job-post URL or saved snapshot, and the access date. The extractor checks mandatory requirements, truthful project/work evidence, posting recency, posting reliability, location, and eligibility. Every check is Pass, Fail, or Unclear and must identify supporting evidence.
+
+\paragraph{Hidden states and beliefs.} Hidden states include: the candidate truly matches and the r\'esum\'e shows it; the candidate matches but evidence is omitted or ambiguous; a mandatory qualification is absent; the vacancy is stale, closed, or unreliable; and an unmodelled feasibility condition matters. The operational belief is a revisable categorical assessment, not a calibrated probability. Section~\ref{sec:probability} gives one explicit illustrative distribution.
+
+\paragraph{Actions.} The action set is
+\begin{equation}
+\mathcal{A}=\{\text{Apply},\text{Research},\text{Human help},\text{Skip}\}.
+\end{equation}
+Research must name a factual question and the answer that would change the action. Human help is reserved for transferability, equivalence, or preference judgments that factual research cannot settle.
+
+\paragraph{Ordered policy.} A conclusive unmet mandatory requirement causes Skip. Otherwise, decision-relevant uncertainty causes Research; all checks passing causes Apply; mandatory and role-specific evidence both failing causes Skip; unresolved judgments cause Human help. The seven-day recency threshold is provisional. Missing evidence is not automatically failure, and unsupported credentials must never be invented.
+
+\section{Probability Model and Decision Rule}\label{sec:probability}
+For one backend case, let mutually exclusive states $H_1$--$H_4$ denote projects accepted as equivalent, strict tenure not shown, employer judgment required, and unreliable vacancy. The elicited prior was $(0.285,0.475,0.190,0.050)$. For detailed strict-duration wording $E$, elicited likelihoods were $(0.25,0.85,0.55,0.30)$. Bayes' rule is
+\begin{equation}
+P(H_i\mid E)=\frac{P(E\mid H_i)P(H_i)}{\sum_jP(E\mid H_j)P(H_j)}.
+\end{equation}
+The unnormalized weights are $(0.07125,0.40375,0.10450,0.01500)$ and sum to $0.59450$, giving posterior $(0.11985,0.67914,0.17578,0.02523)$ up to rounding.
+
+Costs are hypothetical opportunity-impact units: correct terminal action $0$, Research $3$, Human help $2$, incorrect Apply $5$, and incorrect Skip $100$. Let $U=H_2\cup H_4$ and $FJ=H_1\cup H_3$. Immediate terminal losses are
+\begin{align}
+L(\text{Apply})&=5P(U\mid E)=5(0.70437)=3.522,\\
+L(\text{Skip})&=100P(FJ\mid E)=100(0.29563)=29.563.
+\end{align}
+Research costs $3$, so it is preferred to both terminal actions in this example. Apply beats Research only if $P(U\mid E)\leq0.6$ and no hard uncertainty remains; Skip beats Research only if $P(FJ\mid E)\leq0.03$ or failure is conclusive. These numbers are transparent assumptions, not calibrated forecasts or candidate preferences.
+
+\section{Test Method}
+The development replay contains 16 permitted r\'esum\'e--posting records. Every frozen method received the same recorded evidence. The baseline outputs Apply only when all mandatory r\'esum\'e evidence is shown and otherwise Skip; it ignores uncertainty and posting status. Policy~1 uses the four actions and the ordered rules above. Policy~2 separates recency from active-status signals and allows multiple current, non-contradictory signals to support Apply.
+
+We saved actions and computed multiclass confusion matrices, per-action precision and recall where defined, incorrect Apply and Skip counts, Research and human-help rates, and total hypothetical cost. This is a development replay: C01 was a development case, and labels for C02--C16 were confirmed after Policy~1 outputs were visible. A separate fictional C17--C50 set is pre-labelled and packaged for a controlled simulation, but API quota prevented its execution; no result from that unrun set is reported.
+
+\section{Results}
+Table~\ref{tab:results} reproduces the saved 16-case records. Evaluator labels contain 11 Research, one Human help, four Skip, and no Apply cases. Thus agreement is descriptive, not predictive accuracy, and Apply recall is undefined.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Method & Agree & Research & Human & Cost \\
+\midrule
+Baseline & 4/16 & 0 & 0 & 1105 \\
+Policy 1 & 16/16 & 11 & 1 & 35 \\
+Policy 2 & 15/16 & 10 & 1 & 37 \\
+\bottomrule
+\end{tabular}
+\caption{Development replay. Cost uses hypothetical units. Policy~1 labels were not independently hidden before its outputs.}
+\label{tab:results}
+\end{table}
+
+The baseline made one incorrect Apply and 11 incorrect Skips: $11(100)+1(5)=1105$. Policy~1 returned 11 Research and one Human help with no disagreements: $11(3)+1(2)=35$. Policy~2 made one incorrect Apply, ten Research, and one Human help: $1(5)+10(3)+1(2)=37$. Policy~1 therefore has the lowest provisional replay cost, but its 16/16 agreement is likely optimistic because its outputs preceded label confirmation.
+
+\section{Failure Analysis}
+Six named failures were retained. \emph{Missing-Evidence Collapse} (C01) converted absent React-duration evidence into Skip rather than asking whether truthful omitted experience existed. \emph{Equivalent-Experience Blindness} (C03) ignored substantial backend projects when the employer's definition of qualifying tenure was unknown. \emph{Eligibility-Uncertainty Collapse} (C06) treated redacted work authorization as ineligibility. \emph{Transferability Suppression} (C07) rejected adjacent DevOps depth instead of escalating a stack-transfer judgment. \emph{Location-Feasibility Assumption} (C09) inferred inability to relocate from the current address. \emph{Active-Signal Overreach} (C02, Policy~2) treated platform activity as proof that an older exact vacancy was progressing applicants.
+
+The first five can produce an incorrect Skip, assigned the largest cost. The corrective pattern is to distinguish affirmative contradiction from missing evidence, ask only decision-changing factual questions, and use human advice for irreducible judgments.
+
+\section{Limitations, Ethics, and Human Control}
+The replay is small, action-imbalanced, and not blinded; it has no expected Apply label, application outcome, calibration sample, or subgroup analysis. Live pages change. The recency threshold, likelihoods, and costs are unvalidated. The fictional set tests rule consistency, not natural job distributions. R\'esum\'e images may contain sensitive data, so use requires permission, minimization, and redaction.
+
+The agent cannot apply, fabricate evidence, or make an employer-side selection. The candidate can ignore every recommendation, supply corrections, stop research, or seek a trusted person. Disability, authorization, location, and other missing facts are not inferred from silence. Fairness has not been established, and jurisdiction-specific legal review would be required before materially different deployment. These controls follow the NIST emphasis on context and human-impact risk while respecting the scope limits of EEOC guidance \cite{nist2023,eeoc_selection,eeoc_ada}.
+
+\section{Conclusion and New Questions}
+The study shows that a candidate-side agent can make uncertainty an explicit action rather than a hidden reason to reject an opportunity. In this development replay, the uncertainty-aware policy avoided the baseline's costly Skip pattern, but the evidence cannot establish real-world benefit. New questions are: Can independently blinded cases reproduce the result? How should candidate-specific costs be elicited? When does research have positive value after time and privacy costs? Can numerical beliefs be calibrated across changing occupations and postings? Does human escalation improve decisions without creating inaccessible delay?
+
+\section*{AI-Use Statement}
+The team used OpenAI Codex to inspect repository artifacts, implement and test software, draft and revise LaTeX, check arithmetic, retrieve the official IJCAI author kit, and assist PDF compilation and visual inspection. Team members reviewed the source records, equations, citations, claims, and final artifacts. AI output was not treated as evidence, and no claim of IJCAI submission, acceptance, or independent validation is made.
+
+\section*{Contribution Statement}
+\textbf{Course Project Team:} problem selection; collection and interpretation of public discussions; agent design; software development; construction and execution of tests; citation and equation checks; drafting and revision of all preprint sections; and compiled-PDF checks. \textbf{AI coding tools:} implementation, drafting, arithmetic-checking, formatting, and QA assistance under team direction. The human team retains responsibility for the project, claims, and use of permitted data.
+
+\bibliographystyle{named}
+\bibliography{references}
+\end{document}

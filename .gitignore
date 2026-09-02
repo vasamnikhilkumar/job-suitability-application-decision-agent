@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.test-tmp/
+*.py[cod]
+*.egg-info/
+tmp/
+output/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+**/.idea/
+paper/.rendered*/
