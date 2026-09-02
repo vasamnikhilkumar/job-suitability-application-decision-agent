@@ -1,4 +1,4 @@
-# Job-Application Decision Agent — Pilot Evaluation
+# Job-Application Decision Agent 
 
 This project evaluates an uncertainty-aware agent that receives one candidate résumé and one job-post link, then returns exactly one action:
 
