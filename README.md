@@ -248,15 +248,3 @@ Future additions should deliberately include:
 - accepted-equivalent and transferability cases.
 
 Do not present a deliberately balanced simulated action distribution as the natural distribution of real job opportunities.
-
-
-## Known limitations
-
-- The current batch does not yet meet the assignment's required evaluation-set size.
-- No fully blinded cases are present.
-- No evaluator-labeled Apply cases are present.
-- Most cases select Research, creating action imbalance.
-- Live job pages can change after access.
-- The seven-day recency threshold and decision costs are hypothetical.
-- Calibration cannot be measured because numerical beliefs were not saved for each case before label reveal.
-- Candidate outcomes such as interview, assessment, or offer are not predicted by this pilot.
