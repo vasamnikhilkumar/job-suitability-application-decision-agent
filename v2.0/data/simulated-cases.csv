@@ -1,0 +1,501 @@
+case_id,state,true_action,E1_fit,E2_status,E3_clarify
+W2C001,H5,skip,strong,unclear,refutes
+W2C002,H4,skip,contradictory,unclear,judgment
+W2C003,H1,apply,strong,active,judgment
+W2C004,H2,research,strong,unclear,confirms
+W2C005,H1,apply,strong,active,confirms
+W2C006,H4,skip,contradictory,inactive,refutes
+W2C007,H3,request human help,strong,active,judgment
+W2C008,H6,request human help,strong,unclear,unavailable
+W2C009,H2,research,contradictory,active,refutes
+W2C010,H3,request human help,strong,unclear,judgment
+W2C011,H4,skip,contradictory,unclear,refutes
+W2C012,H4,skip,contradictory,active,refutes
+W2C013,H4,skip,contradictory,active,refutes
+W2C014,H1,apply,ambiguous,active,refutes
+W2C015,H4,skip,contradictory,unclear,unavailable
+W2C016,H2,research,strong,active,refutes
+W2C017,H4,skip,contradictory,active,refutes
+W2C018,H2,research,ambiguous,active,unavailable
+W2C019,H2,research,ambiguous,unclear,confirms
+W2C020,H1,apply,strong,active,unavailable
+W2C021,H3,request human help,ambiguous,active,judgment
+W2C022,H4,skip,contradictory,active,unavailable
+W2C023,H2,research,strong,active,refutes
+W2C024,H2,research,ambiguous,active,refutes
+W2C025,H4,skip,contradictory,active,refutes
+W2C026,H2,research,strong,active,confirms
+W2C027,H2,research,strong,active,unavailable
+W2C028,H1,apply,strong,unclear,confirms
+W2C029,H1,apply,strong,active,refutes
+W2C030,H4,skip,contradictory,active,refutes
+W2C031,H4,skip,contradictory,inactive,refutes
+W2C032,H5,skip,strong,unclear,unavailable
+W2C033,H4,skip,contradictory,unclear,refutes
+W2C034,H1,apply,strong,active,confirms
+W2C035,H4,skip,contradictory,active,refutes
+W2C036,H1,apply,contradictory,inactive,confirms
+W2C037,H5,skip,contradictory,unclear,unavailable
+W2C038,H3,request human help,ambiguous,unclear,unavailable
+W2C039,H1,apply,strong,active,confirms
+W2C040,H2,research,ambiguous,unclear,confirms
+W2C041,H2,research,ambiguous,unclear,refutes
+W2C042,H2,research,ambiguous,unclear,refutes
+W2C043,H5,skip,ambiguous,inactive,unavailable
+W2C044,H1,apply,ambiguous,active,confirms
+W2C045,H4,skip,ambiguous,unclear,refutes
+W2C046,H1,apply,ambiguous,active,confirms
+W2C047,H4,skip,contradictory,active,unavailable
+W2C048,H4,skip,contradictory,active,refutes
+W2C049,H5,skip,contradictory,inactive,refutes
+W2C050,H2,research,ambiguous,active,refutes
+W2C051,H3,request human help,strong,active,judgment
+W2C052,H6,request human help,strong,inactive,judgment
+W2C053,H1,apply,strong,active,confirms
+W2C054,H5,skip,ambiguous,inactive,refutes
+W2C055,H6,request human help,strong,unclear,unavailable
+W2C056,H2,research,ambiguous,active,confirms
+W2C057,H2,research,ambiguous,active,judgment
+W2C058,H2,research,ambiguous,unclear,confirms
+W2C059,H2,research,ambiguous,inactive,refutes
+W2C060,H6,request human help,ambiguous,active,refutes
+W2C061,H5,skip,contradictory,inactive,refutes
+W2C062,H1,apply,contradictory,active,confirms
+W2C063,H2,research,ambiguous,active,refutes
+W2C064,H4,skip,contradictory,unclear,refutes
+W2C065,H4,skip,contradictory,active,refutes
+W2C066,H2,research,ambiguous,active,refutes
+W2C067,H2,research,contradictory,active,unavailable
+W2C068,H2,research,ambiguous,inactive,confirms
+W2C069,H3,request human help,ambiguous,active,judgment
+W2C070,H5,skip,strong,inactive,refutes
+W2C071,H1,apply,ambiguous,active,confirms
+W2C072,H4,skip,contradictory,active,refutes
+W2C073,H1,apply,strong,active,refutes
+W2C074,H6,request human help,strong,active,confirms
+W2C075,H3,request human help,strong,active,judgment
+W2C076,H1,apply,strong,active,unavailable
+W2C077,H1,apply,ambiguous,active,unavailable
+W2C078,H5,skip,contradictory,inactive,unavailable
+W2C079,H2,research,ambiguous,unclear,refutes
+W2C080,H4,skip,contradictory,active,confirms
+W2C081,H3,request human help,ambiguous,active,judgment
+W2C082,H6,request human help,strong,unclear,judgment
+W2C083,H3,request human help,ambiguous,active,judgment
+W2C084,H1,apply,contradictory,active,confirms
+W2C085,H4,skip,contradictory,inactive,confirms
+W2C086,H2,research,ambiguous,active,judgment
+W2C087,H2,research,ambiguous,active,confirms
+W2C088,H1,apply,strong,active,confirms
+W2C089,H6,request human help,ambiguous,unclear,confirms
+W2C090,H2,research,ambiguous,active,judgment
+W2C091,H5,skip,strong,inactive,refutes
+W2C092,H4,skip,contradictory,active,refutes
+W2C093,H3,request human help,ambiguous,active,confirms
+W2C094,H1,apply,strong,active,confirms
+W2C095,H5,skip,ambiguous,unclear,unavailable
+W2C096,H3,request human help,ambiguous,active,unavailable
+W2C097,H2,research,ambiguous,active,refutes
+W2C098,H2,research,ambiguous,unclear,confirms
+W2C099,H5,skip,strong,inactive,refutes
+W2C100,H3,request human help,ambiguous,active,confirms
+W2C101,H6,request human help,ambiguous,active,refutes
+W2C102,H3,request human help,ambiguous,active,judgment
+W2C103,H4,skip,contradictory,unclear,refutes
+W2C104,H4,skip,contradictory,unclear,refutes
+W2C105,H3,request human help,strong,active,confirms
+W2C106,H2,research,contradictory,unclear,judgment
+W2C107,H4,skip,contradictory,active,refutes
+W2C108,H2,research,contradictory,active,refutes
+W2C109,H3,request human help,ambiguous,active,judgment
+W2C110,H3,request human help,contradictory,inactive,judgment
+W2C111,H1,apply,strong,active,confirms
+W2C112,H6,request human help,ambiguous,inactive,unavailable
+W2C113,H1,apply,strong,active,confirms
+W2C114,H4,skip,ambiguous,unclear,refutes
+W2C115,H3,request human help,ambiguous,active,judgment
+W2C116,H4,skip,contradictory,active,refutes
+W2C117,H4,skip,contradictory,active,refutes
+W2C118,H3,request human help,ambiguous,active,judgment
+W2C119,H1,apply,strong,active,confirms
+W2C120,H2,research,ambiguous,unclear,refutes
+W2C121,H2,research,ambiguous,active,refutes
+W2C122,H1,apply,strong,active,confirms
+W2C123,H1,apply,strong,active,judgment
+W2C124,H5,skip,strong,inactive,refutes
+W2C125,H6,request human help,contradictory,inactive,judgment
+W2C126,H3,request human help,ambiguous,active,refutes
+W2C127,H3,request human help,ambiguous,active,judgment
+W2C128,H3,request human help,strong,active,unavailable
+W2C129,H2,research,strong,unclear,refutes
+W2C130,H2,research,strong,unclear,unavailable
+W2C131,H5,skip,strong,inactive,refutes
+W2C132,H1,apply,strong,active,confirms
+W2C133,H2,research,ambiguous,active,confirms
+W2C134,H1,apply,strong,active,confirms
+W2C135,H2,research,ambiguous,active,refutes
+W2C136,H2,research,ambiguous,active,refutes
+W2C137,H3,request human help,ambiguous,active,judgment
+W2C138,H1,apply,strong,active,confirms
+W2C139,H3,request human help,contradictory,inactive,judgment
+W2C140,H3,request human help,ambiguous,active,confirms
+W2C141,H1,apply,strong,active,confirms
+W2C142,H4,skip,strong,active,unavailable
+W2C143,H4,skip,contradictory,unclear,refutes
+W2C144,H2,research,strong,active,refutes
+W2C145,H4,skip,ambiguous,active,refutes
+W2C146,H2,research,ambiguous,inactive,refutes
+W2C147,H2,research,strong,active,unavailable
+W2C148,H5,skip,ambiguous,unclear,refutes
+W2C149,H1,apply,strong,active,confirms
+W2C150,H1,apply,strong,active,confirms
+W2C151,H4,skip,contradictory,active,refutes
+W2C152,H1,apply,strong,active,confirms
+W2C153,H2,research,ambiguous,active,unavailable
+W2C154,H2,research,ambiguous,active,confirms
+W2C155,H2,research,strong,inactive,refutes
+W2C156,H5,skip,strong,inactive,judgment
+W2C157,H4,skip,contradictory,active,refutes
+W2C158,H3,request human help,ambiguous,active,judgment
+W2C159,H1,apply,strong,active,judgment
+W2C160,H4,skip,ambiguous,active,refutes
+W2C161,H1,apply,strong,active,confirms
+W2C162,H1,apply,strong,active,confirms
+W2C163,H1,apply,strong,active,confirms
+W2C164,H1,apply,strong,active,unavailable
+W2C165,H2,research,ambiguous,active,refutes
+W2C166,H3,request human help,ambiguous,active,judgment
+W2C167,H3,request human help,ambiguous,active,judgment
+W2C168,H6,request human help,ambiguous,unclear,confirms
+W2C169,H1,apply,ambiguous,unclear,confirms
+W2C170,H2,research,ambiguous,unclear,confirms
+W2C171,H1,apply,strong,active,confirms
+W2C172,H6,request human help,contradictory,inactive,refutes
+W2C173,H2,research,ambiguous,active,refutes
+W2C174,H1,apply,strong,active,confirms
+W2C175,H1,apply,strong,active,confirms
+W2C176,H4,skip,contradictory,active,refutes
+W2C177,H3,request human help,strong,active,judgment
+W2C178,H6,request human help,strong,inactive,refutes
+W2C179,H1,apply,strong,active,confirms
+W2C180,H1,apply,ambiguous,unclear,confirms
+W2C181,H4,skip,strong,unclear,refutes
+W2C182,H1,apply,strong,active,refutes
+W2C183,H4,skip,contradictory,inactive,refutes
+W2C184,H5,skip,strong,inactive,refutes
+W2C185,H4,skip,ambiguous,active,refutes
+W2C186,H2,research,ambiguous,unclear,confirms
+W2C187,H5,skip,strong,unclear,unavailable
+W2C188,H5,skip,strong,inactive,refutes
+W2C189,H3,request human help,strong,active,refutes
+W2C190,H2,research,ambiguous,unclear,confirms
+W2C191,H1,apply,ambiguous,unclear,confirms
+W2C192,H3,request human help,strong,active,judgment
+W2C193,H4,skip,ambiguous,unclear,refutes
+W2C194,H6,request human help,contradictory,unclear,unavailable
+W2C195,H4,skip,contradictory,inactive,unavailable
+W2C196,H4,skip,contradictory,unclear,confirms
+W2C197,H4,skip,contradictory,unclear,judgment
+W2C198,H5,skip,ambiguous,unclear,unavailable
+W2C199,H1,apply,ambiguous,active,confirms
+W2C200,H1,apply,strong,active,confirms
+W2C201,H6,request human help,ambiguous,unclear,judgment
+W2C202,H5,skip,ambiguous,unclear,confirms
+W2C203,H2,research,ambiguous,active,judgment
+W2C204,H1,apply,ambiguous,active,confirms
+W2C205,H1,apply,strong,active,confirms
+W2C206,H1,apply,strong,unclear,confirms
+W2C207,H4,skip,contradictory,active,refutes
+W2C208,H4,skip,contradictory,unclear,refutes
+W2C209,H4,skip,strong,active,refutes
+W2C210,H4,skip,contradictory,active,refutes
+W2C211,H2,research,contradictory,active,unavailable
+W2C212,H4,skip,ambiguous,inactive,refutes
+W2C213,H1,apply,strong,unclear,confirms
+W2C214,H3,request human help,strong,active,judgment
+W2C215,H2,research,ambiguous,unclear,judgment
+W2C216,H5,skip,strong,inactive,refutes
+W2C217,H5,skip,strong,inactive,refutes
+W2C218,H1,apply,strong,active,confirms
+W2C219,H2,research,strong,active,judgment
+W2C220,H4,skip,contradictory,unclear,judgment
+W2C221,H2,research,contradictory,active,unavailable
+W2C222,H3,request human help,strong,active,judgment
+W2C223,H3,request human help,strong,inactive,judgment
+W2C224,H2,research,ambiguous,active,confirms
+W2C225,H2,research,strong,active,refutes
+W2C226,H4,skip,contradictory,active,confirms
+W2C227,H3,request human help,strong,unclear,judgment
+W2C228,H2,research,ambiguous,active,unavailable
+W2C229,H5,skip,ambiguous,inactive,unavailable
+W2C230,H6,request human help,ambiguous,active,confirms
+W2C231,H1,apply,strong,active,confirms
+W2C232,H1,apply,strong,active,unavailable
+W2C233,H4,skip,strong,active,refutes
+W2C234,H4,skip,contradictory,unclear,refutes
+W2C235,H2,research,ambiguous,active,judgment
+W2C236,H2,research,ambiguous,unclear,confirms
+W2C237,H4,skip,contradictory,active,refutes
+W2C238,H2,research,ambiguous,active,refutes
+W2C239,H4,skip,contradictory,active,refutes
+W2C240,H1,apply,strong,active,confirms
+W2C241,H5,skip,ambiguous,inactive,refutes
+W2C242,H4,skip,contradictory,active,refutes
+W2C243,H2,research,strong,active,confirms
+W2C244,H2,research,ambiguous,active,unavailable
+W2C245,H6,request human help,strong,active,judgment
+W2C246,H3,request human help,ambiguous,active,judgment
+W2C247,H2,research,ambiguous,active,refutes
+W2C248,H4,skip,ambiguous,active,refutes
+W2C249,H4,skip,contradictory,active,refutes
+W2C250,H1,apply,strong,active,judgment
+W2C251,H1,apply,strong,active,confirms
+W2C252,H3,request human help,strong,active,judgment
+W2C253,H2,research,ambiguous,unclear,refutes
+W2C254,H5,skip,ambiguous,inactive,refutes
+W2C255,H1,apply,strong,inactive,confirms
+W2C256,H1,apply,strong,active,confirms
+W2C257,H2,research,contradictory,active,unavailable
+W2C258,H2,research,strong,unclear,confirms
+W2C259,H2,research,contradictory,active,unavailable
+W2C260,H2,research,ambiguous,active,confirms
+W2C261,H3,request human help,ambiguous,active,refutes
+W2C262,H2,research,ambiguous,active,refutes
+W2C263,H2,research,ambiguous,unclear,refutes
+W2C264,H2,research,ambiguous,active,refutes
+W2C265,H3,request human help,ambiguous,active,unavailable
+W2C266,H4,skip,strong,active,refutes
+W2C267,H3,request human help,strong,active,confirms
+W2C268,H2,research,strong,unclear,unavailable
+W2C269,H1,apply,ambiguous,unclear,confirms
+W2C270,H3,request human help,ambiguous,active,unavailable
+W2C271,H5,skip,strong,inactive,refutes
+W2C272,H2,research,ambiguous,active,confirms
+W2C273,H2,research,ambiguous,unclear,judgment
+W2C274,H4,skip,contradictory,active,refutes
+W2C275,H4,skip,contradictory,active,refutes
+W2C276,H1,apply,strong,active,confirms
+W2C277,H4,skip,contradictory,active,refutes
+W2C278,H2,research,ambiguous,active,unavailable
+W2C279,H3,request human help,ambiguous,active,refutes
+W2C280,H2,research,ambiguous,active,unavailable
+W2C281,H4,skip,contradictory,inactive,refutes
+W2C282,H1,apply,strong,active,confirms
+W2C283,H4,skip,contradictory,unclear,unavailable
+W2C284,H5,skip,strong,inactive,refutes
+W2C285,H1,apply,strong,active,confirms
+W2C286,H2,research,ambiguous,active,judgment
+W2C287,H3,request human help,strong,active,judgment
+W2C288,H3,request human help,ambiguous,active,unavailable
+W2C289,H1,apply,strong,active,judgment
+W2C290,H3,request human help,strong,unclear,unavailable
+W2C291,H2,research,strong,unclear,confirms
+W2C292,H3,request human help,ambiguous,active,confirms
+W2C293,H1,apply,strong,active,confirms
+W2C294,H5,skip,ambiguous,inactive,unavailable
+W2C295,H1,apply,strong,active,confirms
+W2C296,H2,research,ambiguous,active,judgment
+W2C297,H2,research,ambiguous,active,refutes
+W2C298,H6,request human help,strong,active,confirms
+W2C299,H2,research,ambiguous,inactive,refutes
+W2C300,H2,research,ambiguous,active,refutes
+W2C301,H5,skip,ambiguous,inactive,refutes
+W2C302,H1,apply,strong,inactive,confirms
+W2C303,H6,request human help,strong,unclear,judgment
+W2C304,H1,apply,strong,active,confirms
+W2C305,H4,skip,contradictory,active,refutes
+W2C306,H5,skip,ambiguous,inactive,refutes
+W2C307,H3,request human help,strong,active,judgment
+W2C308,H4,skip,contradictory,unclear,refutes
+W2C309,H2,research,ambiguous,active,judgment
+W2C310,H1,apply,strong,active,confirms
+W2C311,H1,apply,strong,active,confirms
+W2C312,H2,research,ambiguous,unclear,judgment
+W2C313,H5,skip,strong,unclear,refutes
+W2C314,H3,request human help,ambiguous,active,judgment
+W2C315,H3,request human help,ambiguous,active,judgment
+W2C316,H1,apply,strong,active,confirms
+W2C317,H2,research,ambiguous,unclear,refutes
+W2C318,H1,apply,strong,active,confirms
+W2C319,H1,apply,contradictory,active,confirms
+W2C320,H4,skip,contradictory,active,refutes
+W2C321,H3,request human help,strong,unclear,judgment
+W2C322,H2,research,ambiguous,unclear,refutes
+W2C323,H4,skip,contradictory,inactive,refutes
+W2C324,H3,request human help,ambiguous,active,judgment
+W2C325,H1,apply,strong,active,confirms
+W2C326,H3,request human help,strong,active,judgment
+W2C327,H2,research,ambiguous,active,unavailable
+W2C328,H6,request human help,ambiguous,inactive,judgment
+W2C329,H4,skip,ambiguous,active,unavailable
+W2C330,H2,research,ambiguous,active,confirms
+W2C331,H2,research,ambiguous,active,unavailable
+W2C332,H3,request human help,strong,unclear,judgment
+W2C333,H5,skip,strong,inactive,refutes
+W2C334,H2,research,contradictory,active,unavailable
+W2C335,H3,request human help,ambiguous,active,refutes
+W2C336,H3,request human help,strong,active,judgment
+W2C337,H4,skip,contradictory,unclear,refutes
+W2C338,H1,apply,strong,active,confirms
+W2C339,H1,apply,strong,active,confirms
+W2C340,H1,apply,strong,active,confirms
+W2C341,H1,apply,strong,active,confirms
+W2C342,H1,apply,contradictory,active,confirms
+W2C343,H1,apply,strong,active,confirms
+W2C344,H4,skip,ambiguous,unclear,refutes
+W2C345,H1,apply,strong,active,confirms
+W2C346,H4,skip,ambiguous,unclear,refutes
+W2C347,H2,research,strong,active,unavailable
+W2C348,H1,apply,strong,active,refutes
+W2C349,H4,skip,strong,active,unavailable
+W2C350,H2,research,strong,active,confirms
+W2C351,H3,request human help,strong,active,refutes
+W2C352,H1,apply,strong,active,confirms
+W2C353,H3,request human help,strong,unclear,judgment
+W2C354,H5,skip,contradictory,inactive,unavailable
+W2C355,H4,skip,strong,unclear,refutes
+W2C356,H2,research,ambiguous,unclear,confirms
+W2C357,H4,skip,contradictory,active,refutes
+W2C358,H1,apply,ambiguous,active,refutes
+W2C359,H3,request human help,strong,unclear,judgment
+W2C360,H6,request human help,contradictory,unclear,judgment
+W2C361,H1,apply,strong,active,confirms
+W2C362,H3,request human help,strong,active,unavailable
+W2C363,H1,apply,ambiguous,active,confirms
+W2C364,H2,research,ambiguous,active,judgment
+W2C365,H3,request human help,ambiguous,unclear,judgment
+W2C366,H2,research,ambiguous,unclear,confirms
+W2C367,H1,apply,strong,active,confirms
+W2C368,H4,skip,contradictory,active,refutes
+W2C369,H4,skip,contradictory,active,unavailable
+W2C370,H3,request human help,strong,unclear,judgment
+W2C371,H1,apply,strong,active,confirms
+W2C372,H2,research,ambiguous,unclear,judgment
+W2C373,H6,request human help,strong,unclear,unavailable
+W2C374,H2,research,ambiguous,active,confirms
+W2C375,H3,request human help,strong,unclear,confirms
+W2C376,H2,research,ambiguous,active,judgment
+W2C377,H2,research,ambiguous,active,refutes
+W2C378,H1,apply,strong,unclear,confirms
+W2C379,H1,apply,strong,active,judgment
+W2C380,H3,request human help,strong,unclear,judgment
+W2C381,H3,request human help,strong,active,unavailable
+W2C382,H5,skip,ambiguous,inactive,refutes
+W2C383,H1,apply,strong,active,confirms
+W2C384,H1,apply,strong,active,confirms
+W2C385,H3,request human help,ambiguous,unclear,judgment
+W2C386,H4,skip,contradictory,active,refutes
+W2C387,H3,request human help,contradictory,active,judgment
+W2C388,H2,research,ambiguous,active,unavailable
+W2C389,H1,apply,strong,active,confirms
+W2C390,H5,skip,contradictory,inactive,refutes
+W2C391,H2,research,ambiguous,unclear,confirms
+W2C392,H1,apply,strong,active,confirms
+W2C393,H4,skip,strong,inactive,refutes
+W2C394,H1,apply,strong,active,confirms
+W2C395,H1,apply,strong,active,unavailable
+W2C396,H2,research,ambiguous,active,unavailable
+W2C397,H4,skip,contradictory,active,refutes
+W2C398,H2,research,strong,unclear,judgment
+W2C399,H3,request human help,ambiguous,unclear,judgment
+W2C400,H5,skip,strong,inactive,refutes
+W2C401,H2,research,ambiguous,active,refutes
+W2C402,H1,apply,strong,active,judgment
+W2C403,H4,skip,contradictory,unclear,refutes
+W2C404,H6,request human help,contradictory,unclear,unavailable
+W2C405,H2,research,ambiguous,active,confirms
+W2C406,H1,apply,strong,active,confirms
+W2C407,H1,apply,strong,active,confirms
+W2C408,H1,apply,strong,active,unavailable
+W2C409,H4,skip,contradictory,active,refutes
+W2C410,H2,research,ambiguous,active,unavailable
+W2C411,H5,skip,contradictory,inactive,refutes
+W2C412,H3,request human help,contradictory,unclear,unavailable
+W2C413,H2,research,ambiguous,unclear,unavailable
+W2C414,H1,apply,strong,active,confirms
+W2C415,H4,skip,contradictory,active,unavailable
+W2C416,H1,apply,strong,active,confirms
+W2C417,H3,request human help,strong,active,confirms
+W2C418,H4,skip,contradictory,active,judgment
+W2C419,H4,skip,contradictory,active,refutes
+W2C420,H1,apply,strong,active,confirms
+W2C421,H1,apply,ambiguous,active,confirms
+W2C422,H4,skip,contradictory,unclear,judgment
+W2C423,H1,apply,strong,active,refutes
+W2C424,H3,request human help,ambiguous,active,judgment
+W2C425,H2,research,ambiguous,active,unavailable
+W2C426,H2,research,ambiguous,active,judgment
+W2C427,H1,apply,strong,active,judgment
+W2C428,H3,request human help,ambiguous,active,judgment
+W2C429,H2,research,ambiguous,inactive,refutes
+W2C430,H4,skip,contradictory,inactive,confirms
+W2C431,H5,skip,strong,inactive,judgment
+W2C432,H4,skip,contradictory,unclear,refutes
+W2C433,H4,skip,contradictory,active,refutes
+W2C434,H2,research,strong,active,unavailable
+W2C435,H2,research,ambiguous,active,refutes
+W2C436,H2,research,ambiguous,active,refutes
+W2C437,H1,apply,strong,unclear,confirms
+W2C438,H2,research,ambiguous,unclear,refutes
+W2C439,H2,research,strong,unclear,confirms
+W2C440,H3,request human help,ambiguous,active,judgment
+W2C441,H4,skip,ambiguous,active,refutes
+W2C442,H2,research,ambiguous,active,unavailable
+W2C443,H3,request human help,strong,unclear,judgment
+W2C444,H4,skip,contradictory,unclear,refutes
+W2C445,H1,apply,strong,active,judgment
+W2C446,H2,research,strong,inactive,confirms
+W2C447,H3,request human help,strong,active,judgment
+W2C448,H1,apply,strong,active,confirms
+W2C449,H2,research,ambiguous,active,refutes
+W2C450,H4,skip,contradictory,active,refutes
+W2C451,H3,request human help,strong,active,judgment
+W2C452,H1,apply,ambiguous,active,judgment
+W2C453,H4,skip,contradictory,active,refutes
+W2C454,H5,skip,strong,inactive,refutes
+W2C455,H3,request human help,contradictory,active,judgment
+W2C456,H2,research,contradictory,active,confirms
+W2C457,H2,research,strong,unclear,refutes
+W2C458,H2,research,ambiguous,active,confirms
+W2C459,H1,apply,contradictory,active,confirms
+W2C460,H1,apply,contradictory,active,judgment
+W2C461,H3,request human help,ambiguous,active,confirms
+W2C462,H5,skip,strong,inactive,refutes
+W2C463,H2,research,ambiguous,active,confirms
+W2C464,H3,request human help,ambiguous,active,judgment
+W2C465,H1,apply,strong,unclear,confirms
+W2C466,H3,request human help,strong,active,judgment
+W2C467,H4,skip,contradictory,active,refutes
+W2C468,H2,research,ambiguous,unclear,confirms
+W2C469,H1,apply,strong,active,judgment
+W2C470,H2,research,strong,unclear,confirms
+W2C471,H2,research,strong,active,confirms
+W2C472,H4,skip,contradictory,unclear,refutes
+W2C473,H3,request human help,strong,active,judgment
+W2C474,H1,apply,strong,active,confirms
+W2C475,H1,apply,strong,unclear,confirms
+W2C476,H2,research,ambiguous,active,confirms
+W2C477,H5,skip,contradictory,inactive,refutes
+W2C478,H3,request human help,strong,unclear,judgment
+W2C479,H2,research,ambiguous,active,confirms
+W2C480,H1,apply,strong,active,confirms
+W2C481,H2,research,ambiguous,active,unavailable
+W2C482,H1,apply,strong,active,confirms
+W2C483,H3,request human help,strong,inactive,judgment
+W2C484,H3,request human help,ambiguous,active,confirms
+W2C485,H5,skip,strong,unclear,unavailable
+W2C486,H2,research,ambiguous,unclear,unavailable
+W2C487,H5,skip,ambiguous,inactive,refutes
+W2C488,H2,research,ambiguous,inactive,refutes
+W2C489,H2,research,strong,active,unavailable
+W2C490,H1,apply,strong,active,confirms
+W2C491,H3,request human help,strong,active,unavailable
+W2C492,H6,request human help,contradictory,active,refutes
+W2C493,H4,skip,contradictory,active,confirms
+W2C494,H2,research,ambiguous,unclear,judgment
+W2C495,H1,apply,strong,active,confirms
+W2C496,H1,apply,strong,active,confirms
+W2C497,H5,skip,strong,inactive,refutes
+W2C498,H1,apply,strong,active,judgment
+W2C499,H1,apply,strong,active,confirms
+W2C500,H5,skip,strong,unclear,judgment

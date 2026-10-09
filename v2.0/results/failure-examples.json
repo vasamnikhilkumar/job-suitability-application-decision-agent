@@ -1,0 +1,57 @@
+[
+  {
+    "case_id": "W2C001",
+    "state": "H5",
+    "true_action": "skip",
+    "predicted": "apply",
+    "evidence": {
+      "E1_fit": "strong",
+      "E2_status": "unclear",
+      "E3_clarify": "refutes"
+    }
+  },
+  {
+    "case_id": "W2C002",
+    "state": "H4",
+    "true_action": "skip",
+    "predicted": "research",
+    "evidence": {
+      "E1_fit": "contradictory",
+      "E2_status": "unclear",
+      "E3_clarify": "judgment"
+    }
+  },
+  {
+    "case_id": "W2C004",
+    "state": "H2",
+    "true_action": "research",
+    "predicted": "apply",
+    "evidence": {
+      "E1_fit": "strong",
+      "E2_status": "unclear",
+      "E3_clarify": "confirms"
+    }
+  },
+  {
+    "case_id": "W2C006",
+    "state": "H4",
+    "true_action": "skip",
+    "predicted": "research",
+    "evidence": {
+      "E1_fit": "contradictory",
+      "E2_status": "inactive",
+      "E3_clarify": "refutes"
+    }
+  },
+  {
+    "case_id": "W2C007",
+    "state": "H3",
+    "true_action": "request human help",
+    "predicted": "apply",
+    "evidence": {
+      "E1_fit": "strong",
+      "E2_status": "active",
+      "E3_clarify": "judgment"
+    }
+  }
+]

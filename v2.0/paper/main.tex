@@ -1,0 +1,237 @@
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+\usepackage{ijcai26}
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\urlstyle{same}
+\providecommand{\pdfinfo}[1]{\special{pdf:docinfo << #1 >>}}
+\pdfinfo{/TemplateVersion (IJCAI.2026.0)}
+
+\title{Cost-Aware Evidence Acquisition for a Candidate-Controlled Job Decision Agent}
+\author{Vasam Nikhil Kumar\affiliations Independent Course Project}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study one specific problem: given a candidate profile and one exact vacancy, recommend Apply, Research, Request human help, or Skip while deciding whether additional evidence is worth its cost. Six hidden states distinguish actionable match, factual uncertainty, judgment, mismatch, unavailable opportunity, and residual other. We specify hypothetical priors, three likelihood tables, action losses, and reproducible Bayesian updates. On 500 seeded synthetic cases, a no-evidence baseline reached 28.0\% action accuracy and incurred 36,000 loss units. A full-information Bayes policy reached 45.8\% accuracy and total modeled cost 1,760.5. The frozen active policy stopped immediately and escalated every case because human help was underpriced; a post-failure redesign eliminated blanket escalation, reached 40.4\% accuracy, and used two rather than three checks. The negative result shows how a rational policy can expose an irrational objective. This is a course preprint, not an IJCAI acceptance or submission claim.
+\end{abstract}
+
+\section{Introduction}
+Job seekers make decisions with incomplete, noisy evidence. Missing resume detail is not proof of missing ability; an active page is not proof of an open vacancy; and equivalent experience can require judgment. A binary matcher can turn uncertainty into opportunity denial. We instead model the candidate's next action and the value of checking evidence.
+
+The artifact is advisory: it does not submit applications, contact employers, rank candidates for employers, or infer protected attributes. Its central question is whether explicit beliefs, losses, and information costs produce auditable behavior. Code, data, frozen policies, and results are available at \url{https://github.com/vasamnikhilkumar/job-suitability-application-decision-agent}. This preprint uses the official IJCAI 2026 author-kit style files.
+
+\section{Related Work}
+Shannon defines information through uncertainty reduction and gives the entropy form used here \cite{shannon1948}. Raghavan et al. document gaps between claims and validation practice in algorithmic hiring, motivating restraint about what a candidate-side simulation can establish \cite{raghavan2020}. The NIST AI Risk Management Framework emphasizes contextual risk, measurement, governance, and human oversight \cite{nist2023}. These sources changed the design in three concrete ways: entropy is reported in bits, hiring validity is not inferred from synthetic results, and human override is retained. Original PDFs of all three cited sources were opened and checked during preparation; no inaccessible secondary citation is retained.
+
+Three recorded Reddit discussions informed the project. Two questions received no visible response and caused no design change. In the third, commenters suggested flagging missing or contradictory evidence, escalating equivalence judgments, and testing disagreement across reasoning passes. We adopted explicit uncertainty and escalation, but did not treat anecdotes as probability estimates. Age-based scoring suggested in discussion was rejected as irrelevant and potentially discriminatory. Week~2 social posts remain labeled as drafts; no unobserved public participation is claimed.
+
+\section{Agent Design}
+\paragraph{Input.} The agent receives a permitted candidate profile, one exact job posting or snapshot, and three categorical evidence outcomes: candidate-fit audit $E_1$, vacancy-status audit $E_2$, and targeted clarification $E_3$.
+
+\paragraph{Hidden states and beliefs.} Table~\ref{tab:states} gives six mutually exclusive worlds. All priors are hypothetical judgments informed by Week~1 failure families; they are not hiring frequencies. The residual state prevents false completeness.
+
+\begin{table}[t]
+\centering\small
+\caption{Hidden states and hypothetical priors.}
+\label{tab:states}
+\begin{tabular}{lllr}
+\toprule
+State & Meaning & Correct action & Prior\\
+\midrule
+$H_1$ & actionable match & Apply & .25\\
+$H_2$ & factual uncertainty & Research & .25\\
+$H_3$ & judgment-dependent & Human & .15\\
+$H_4$ & conclusive mismatch & Skip & .20\\
+$H_5$ & unavailable/infeasible & Skip & .10\\
+$H_6$ & residual other & Human & .05\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Actions.} The action set is $\mathcal A=\{$Apply, Research, Request human help, Skip$\}$. Apply and Skip are recommendations only. Research must target a resolvable fact; human help is an escalation, not a disguised resolution.
+
+\paragraph{Architecture and feedback.} The loop is observation $\rightarrow$ belief $\rightarrow$ select a check or stop $\rightarrow$ action $\rightarrow$ outcome. Within a case, observed check outcomes update the posterior. Across cases, true outcomes would be delayed and selectively observed: rejected opportunities may never reveal whether Apply was correct. Consequently, this prototype does not update future priors automatically; a human-governed, outcome-complete dataset would be required.
+
+We freeze three policies before results: P0 chooses the most common prior action without evidence; P2 observes all checks and minimizes posterior expected loss; P3 repeatedly buys the check with positive net value of information and otherwise stops. P3b is explicitly a post-failure redesign, not part of the initial comparison.
+
+\section{Probabilistic View}
+For belief $b_i=P(H_i)$ and observation $e$ from source $k$, the posterior is
+\begin{equation}
+b'_i=\frac{P(e\mid H_i,k)b_i}{\sum_jP(e\mid H_j,k)b_j}.
+\end{equation}
+For $E_1=\mathrm{ambiguous}$, the unnormalized weights are $(.0375,.1625,.0825,.0300,.0350,.0250)$ and sum to $.3725$. The posterior is $(.10067,.43624,.22148,.08054,.09396,.06711)$.
+
+Table~\ref{tab:likelihoods} contains every likelihood used by the simulator. Each state row within a source sums to one. The model assumes sources are conditionally independent given the hidden state; this simplifying assumption is unverified.
+
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Complete hypothetical likelihood model. Entries are outcome probabilities conditioned on state.}
+\label{tab:likelihoods}
+\begin{tabular}{lccc|ccc|cccc}
+\toprule
+&\multicolumn{3}{c}{$E_1$ fit audit}&\multicolumn{3}{c}{$E_2$ status audit}&\multicolumn{4}{c}{$E_3$ clarification}\\
+State&strong&ambig.&contra.&active&unclear&inactive&confirm&judgment&refute&unavail.\\
+\midrule
+$H_1$&.80&.15&.05&.85&.12&.03&.75&.10&.05&.10\\
+$H_2$&.25&.65&.10&.65&.30&.05&.30&.15&.35&.20\\
+$H_3$&.35&.55&.10&.70&.25&.05&.10&.65&.10&.15\\
+$H_4$&.05&.15&.80&.65&.25&.10&.05&.05&.80&.10\\
+$H_5$&.45&.35&.20&.05&.20&.75&.05&.05&.65&.25\\
+$H_6$&.25&.50&.25&.30&.45&.25&.15&.30&.20&.35\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Information-Theoretic View}
+
+Entropy is
+\begin{equation}
+\mathcal H(b)=-\sum_i b_i\log_2 b_i.
+\end{equation}
+It falls from 2.42322 to 2.21203 bits for the example, an observed reduction of 0.21119 bits. One bit is the uncertainty resolved by one perfectly balancing yes/no answer. Conditional entropy is expected remaining uncertainty after a check; expected information gain (EIG) is current entropy minus that quantity. EIG is nonnegative on average even though a particular surprising outcome may increase entropy.
+
+Mutual information is the expected reduction in uncertainty about the hidden state provided by an evidence source; in this discrete model it equals EIG. KL divergence measures the directed change from one belief distribution to another and is asymmetric, so it is not a distance. Jensen--Shannon divergence symmetrizes and bounds that comparison; a future monitor could compare recent outcome distributions with model predictions to flag distribution shift. These latter measures explain potential extensions but are not used to produce the reported decisions.
+
+\section{Information Selection}
+Expected information gains at the prior are 0.42445, 0.25128, and 0.49382 bits for $E_1,E_2,E_3$. Generalized cost is money plus $0.03$ per minute plus $0.50$ per attention point. Table~\ref{tab:information} shows that $E_3$ has the most bits, while $E_2$ has the most bits per cost. The most informative check is therefore not automatically the best check.
+
+\begin{table}[t]
+\centering\small
+\caption{Hypothetical evidence value and cost at the prior.}
+\label{tab:information}
+\begin{tabular}{lrrrr}
+\toprule
+Check&EIG&Minutes&Cost&EIG/cost\\
+\midrule
+$E_1$ fit&.42445&4&.445&.954\\
+$E_2$ status&.25128&2&.210&1.197\\
+$E_3$ clarify&.49382&20&1.600&.309\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The agent can formulate five questions: (1) does the profile show mandatory evidence (strong/ambiguous/contradictory); (2) is the exact vacancy active (active/unclear/inactive); (3) can the employer or authoritative source clarify the requirement (confirm/judgment/refute/unavailable); (4) is location or authorization feasible (yes/no/unknown); and (5) does a human judge claimed experience equivalent (yes/no/uncertain). Only the first three have frozen likelihoods and enter the experiment; the last two are candidates for future data collection, not invented measurements.
+
+\section{Decision Policy}
+
+For loss $C(y,a)$ over true action $y$, the Bayes action is
+\begin{equation}
+a^*(b)=\arg\min_{a\in\mathcal A}\sum_y P(y\mid b)C(y,a).
+\end{equation}
+P3 buys check $k$ only when
+\begin{equation}
+\min_a R(a,b)-\mathrm{E}_e[\min_a R(a,b'_{k,e})]-c_k>0.
+\end{equation}
+Incorrect Skip costs 100, incorrect Apply 5, and Research or human-help costs are lower but nonzero. At the prior under the frozen loss matrix, expected costs are Apply $=3.75$, Research $=2.25$, Human $=1.60$, and Skip $=70.00$ hypothetical units; thus Human is selected. The same arithmetic reveals the P3 failure: no check reduces minimum risk enough to repay its cost. In the redesigned matrix, unnecessary human review costs 6 and correct review costs 2 to represent scarce capacity.
+
+P3 stops when no unused check has positive net value. P3b stops when entropy is at most 1.80 bits, no check remains, or best EIG/cost is below 0.50. A human is required for residual states, unresolved judgment, strongly conflicting evidence, or a high-cost Skip that remains uncertain. Ties are deterministic. As a threshold sanity check, if carrying an umbrella unnecessarily costs 1 and rain without one costs 20, carry when $P(\mathrm{rain})\geq1/(1+20)=.0476$; if inconvenience costs 5, the threshold becomes $.20$.
+
+\section{Experiment}
+Using Python's pseudorandom generator with seed 20260910, we sampled 500 states from the prior and all evidence outcomes from the corresponding likelihood rows. Every policy received the identical saved cases. No LLM or external API participated. We report accuracy, per-action precision and recall, decision loss, evidence cost, average checks, and human-review rate. Calibration is omitted because a calibration protocol was not frozen before outcomes. An independent verifier checks priors, likelihood rows, case identity, counts, and recomputed metrics.
+
+\section{Results}
+Table~\ref{tab:results} reports the exact saved aggregate values. P2 has the highest accuracy. P3 has the lowest nominal total cost, but only because it delegates every case; this is not an operational success. P3b eliminates blanket deferral and saves one check relative to P2, but neither accuracy nor total cost dominates P2.
+
+\begin{table}[t]
+\centering
+\caption{Seeded simulation results ($n=500$).}
+\label{tab:results}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Acc. & Total cost & Checks & Human \\
+\midrule
+P0 & .280 & 36000.0 & 0.00 & .000 \\
+P2 & .458 & 1760.5 & 3.00 & .584 \\
+P3 & .214 & 786.0 & 0.00 & 1.000 \\
+P3b & .404 & 2102.5 & 2.00 & .000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering\small
+\begin{tabular}{lcl}
+P0  & \rule{28mm}{5pt} & 28.0\%\\
+P2  & \rule{45.8mm}{5pt} & 45.8\%\\
+P3  & \rule{21.4mm}{5pt} & 21.4\%\\
+P3b & \rule{40.4mm}{5pt} & 40.4\%\\
+\end{tabular}
+\caption{Action accuracy on the identical 500 simulated cases. Bar length is percentage accuracy.}
+\label{fig:accuracy}
+\end{figure}
+
+The decision headline is therefore conditional: full evidence improves agreement substantially over the most-common baseline, while active evidence selection is only as sensible as its loss model. Multiplying false-Skip losses by 100 changes the selected action and suppresses evidence; multiplying evidence cost by 10 also suppresses acquisition. A uniform policy prior on the same seeded cases changes accuracy, checks, and escalation, demonstrating prior sensitivity.
+
+\section{Failure Analysis}
+The primary failure is a \emph{deferral trap}: under the frozen loss matrix, human help costs at most two units and already minimizes prior risk, so evidence cannot repay its cost. P3 rationally escalates 500/500 cases. P3b responds by charging reviewer capacity and using an entropy budget with an information-per-cost threshold.
+
+\begin{table}[t]
+\centering\scriptsize
+\caption{Five post-redesign failures.}
+\begin{tabular}{llll}
+\toprule
+Case&Truth$\rightarrow$prediction&Class&Implication\\
+\midrule
+C001&Skip$\rightarrow$Apply&misleading&inspect conflict\\
+C002&Skip$\rightarrow$Research&overlap&separate states\\
+C004&Research$\rightarrow$Apply&early stop&block on unknown\\
+C006&Skip$\rightarrow$Research&loss model&validate guard\\
+C007&Human$\rightarrow$Apply&under-deferral&honor judgment\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The first failure analysis produced P3b and a complete rerun. The five later cases are not silently used to tune another policy because that would train on the test set. Two concepts emerge: a \emph{deferral trap}, in which cheap escalation dominates all work, and \emph{evidence-budget brittleness}, in which reducing entropy does not necessarily reduce decision loss.
+
+\section{Human Discussions}
+Three Week~1 Reddit exchanges were recorded. Two questions received no visible response, so they caused no change. In the third, commenters suggested exposing missing and contradictory information, escalating equivalence judgments, and testing disagreement. The agent consequently separates factual Research from judgmental Human help. A proposed age-range score was rejected as irrelevant and potentially discriminatory. Five Week~2 LinkedIn posts and Reddit/X follow-ups remain drafts; they are not represented as published or as human feedback.
+
+\section{Limitations, Ethics, and Human Control}
+All priors, likelihoods, and costs are hypothetical; the synthetic sample demonstrates implementation behavior, not employment validity. Conditional independence of evidence given state is strong and probably false. Results are seed-specific, P3b followed failure inspection, and no demographic fairness or real-world outcome study was performed. The agent could discourage beneficial applications, reproduce resume-writing inequities, or create false confidence.
+
+A human can override every recommendation and must decide escalated cases. High-cost Skip recommendations should receive review. Logs retain beliefs, observations, costs, and actions. The method must not use protected attributes or fabricate credentials. Transfer to software incident triage preserves the mathematical form but requires new states, likelihoods, and losses; domain values cannot be copied.
+
+\section{Conclusion and New Questions}
+An explicit belief model made both useful behavior and objective failure inspectable. Full evidence improved accuracy over a no-evidence baseline, but a nominally optimal active policy exploited cheap deferral. The redesign corrected that behavior without becoming universally best. New questions are: how should reviewer queues create dynamic deferral costs; which evidence dependencies matter; can decision-focused information outperform entropy budgets; and how should priors be learned without reproducing historical inequity?
+
+\section*{Required Core Questions}
+\begin{enumerate}\small
+\item A hidden state is an important fact the agent cannot directly observe. Ours are $H_1$--$H_6$ in Table~\ref{tab:states}.
+\item Direct prediction hides uncertainty and cannot decide whether another check is worth its cost. Multiple actions can also have unequal errors.
+\item A belief distribution assigns probability to every possible hidden state. It sums to one because the mutually exclusive states exhaust the modeled possibilities.
+\item A prior is belief before current evidence; a posterior is belief after updating on it. The posterior becomes the next within-case belief.
+\item A likelihood is $P(e\mid H)$, the chance of evidence under a state. It is not $P(H\mid e)$, which is the posterior obtained using Bayes' rule.
+\item The agent is uncertain when substantial probability remains across competing states or actions. Entropy summarizes that spread but does not measure correctness.
+\item Entropy is expected uncertainty, $-\sum_i p_i\log_2p_i$. It is high for diffuse beliefs and low when one state dominates.
+\item A bit is the information in resolving one balanced binary uncertainty. Six unequal states here begin with 2.42322 bits.
+\item Information gain is the decrease in entropy after evidence. The ambiguous fit outcome reduces entropy by 0.21119 bits.
+\item Conditional entropy is expected remaining uncertainty after observing a source. EIG subtracts it from current entropy.
+\item Mutual information is expected information one variable provides about another. Unlike correlation, it detects nonlinear dependence and is symmetric.
+\item KL divergence measures directed discrepancy between probability distributions. It is not a distance because it is asymmetric and does not satisfy the triangle inequality.
+\item For example, $D_{KL}((.9,.1)\Vert(.5,.5))$ differs from the reverse because each expectation uses a different weighting distribution. Direction therefore changes the penalty.
+\item Jensen--Shannon divergence averages KL divergences to a shared mixture. It addresses KL's asymmetry and gives a finite, symmetric candidate for detecting distribution change.
+\item Calibration means that events assigned probability $q$ occur about fraction $q$ over comparable cases. It matters because an overconfident agent may suppress necessary escalation.
+\item Expected cost weights each action error by its belief probability. Our policy derives its choice by minimizing this quantity; the umbrella threshold $.0476$ follows by equating the two action costs.
+\item Value of information is expected decision cost saved by evidence minus evidence cost. More information is not worth buying when this value is nonpositive.
+\item Yes: $E_3$ provides the most expected information, 0.49382 bits, but costs 1.600 units and has the worst information-per-cost ratio. It can be useless when no outcome changes the action.
+\item Distribution shift means the operational world no longer follows the modeled prior or likelihoods. The agent could monitor recent outcome frequencies with a Jensen--Shannon alarm and escalate when divergence persists.
+\item The agent stops when no unused check has positive net decision value. P3b additionally stops below 1.80 bits or when best EIG/cost is below 0.50.
+\end{enumerate}
+
+\paragraph{AI-use statement.} OpenAI Codex assisted with software implementation, debugging, simulation execution, arithmetic verification, drafting, citation retrieval, LaTeX assembly, and page-by-page PDF inspection. Outputs were checked by deterministic verification code, three unit tests, recomputation from saved predictions, source-PDF inspection, LaTeX compilation, text extraction, and visual rendering. The 500-case experiment was executed locally in the author's project workspace at seed 20260910; no LLM produced case outcomes. The author remains responsible for understanding, reviewing, and approving every claim before release.
+
+\paragraph{Contribution statement.} Vasam Nikhil Kumar: problem selection, public discussions, agent design, software development, tests, citation checks, preprint sections, and PDF checks. OpenAI Codex provided AI-assisted implementation and editorial support and is not a human coauthor.
+
+\bibliographystyle{named}
+\bibliography{references}
+\end{document}

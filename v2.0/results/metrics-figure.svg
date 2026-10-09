@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="title desc">
+  <title id="title">Policy accuracy and average checks</title>
+  <desc id="desc">Grouped bars compare P0, P2, P3, and P3b using the verified 500-case simulation.</desc>
+  <rect width="760" height="390" fill="white"/>
+  <text x="380" y="28" text-anchor="middle" font-family="sans-serif" font-size="18">Verified policy comparison (n=500)</text>
+  <line x1="75" y1="320" x2="710" y2="320" stroke="#333"/>
+  <line x1="75" y1="60" x2="75" y2="320" stroke="#333"/>
+  <text x="20" y="190" transform="rotate(-90 20 190)" text-anchor="middle" font-family="sans-serif" font-size="13">Percentage / normalized checks</text>
+  <g font-family="sans-serif" font-size="12" fill="#333">
+    <text x="62" y="324" text-anchor="end">0</text><text x="62" y="272" text-anchor="end">20</text><text x="62" y="220" text-anchor="end">40</text><text x="62" y="168" text-anchor="end">60</text><text x="62" y="116" text-anchor="end">80</text><text x="62" y="64" text-anchor="end">100</text>
+  </g>
+  <g fill="#2878b5"><rect x="120" y="247.2" width="42" height="72.8"/><rect x="270" y="200.9" width="42" height="119.1"/><rect x="420" y="264.4" width="42" height="55.6"/><rect x="570" y="215.0" width="42" height="105.0"/></g>
+  <g fill="#f28e2b"><rect x="167" y="320" width="42" height="0"/><rect x="317" y="60" width="42" height="260"/><rect x="467" y="320" width="42" height="0"/><rect x="617" y="146.7" width="42" height="173.3"/></g>
+  <g font-family="sans-serif" font-size="13" text-anchor="middle"><text x="165" y="344">P0</text><text x="315" y="344">P2</text><text x="465" y="344">P3</text><text x="615" y="344">P3b</text></g>
+  <rect x="475" y="22" width="15" height="15" fill="#2878b5"/><text x="496" y="34" font-family="sans-serif" font-size="12">Accuracy (%)</text>
+  <rect x="590" y="22" width="15" height="15" fill="#f28e2b"/><text x="611" y="34" font-family="sans-serif" font-size="12">Checks (3 = 100%)</text>
+  <text x="380" y="377" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">Source: results/metrics.json; seed 20260910</text>
+</svg>

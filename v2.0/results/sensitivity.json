@@ -1,0 +1,26 @@
+{
+  "false_skip_100x": {
+    "accuracy": 0.246,
+    "decision_cost": 1885.0,
+    "information_cost": 0.0,
+    "total_cost": 1885.0,
+    "average_checks": 0.0,
+    "human_review_rate": 0.0
+  },
+  "evidence_cost_10x": {
+    "accuracy": 0.246,
+    "decision_cost": 1885.0,
+    "information_cost": 0.0,
+    "total_cost": 1885.0,
+    "average_checks": 0.0,
+    "human_review_rate": 0.0
+  },
+  "uniform_unreliable_prior": {
+    "accuracy": 0.314,
+    "decision_cost": 1954.0,
+    "information_cost": 298.1299999999986,
+    "total_cost": 2252.1299999999987,
+    "average_checks": 1.868,
+    "human_review_rate": 0.38
+  }
+}

@@ -15,3 +15,7 @@ The Reddit responses are attributable qualitative input. They can reveal assumpt
 ## Update rule
 
 Add each later Reddit contribution as a separate row only when its post text and response are available. If a post has no answer, record **No change** and the reason. Multiple share links resolving to one post count as one contribution.
+
+## Week 2 participation status
+
+Five LinkedIn drafts and continued Reddit/X prompts are stored in `v2.0/social/`. They are **not recorded as public participation** because no evidence of posting or human replies has been supplied. After posting, add the URL, exact contribution, human response, and resulting design decision here. Do not convert a draft or AI-generated response into claimed human discussion.

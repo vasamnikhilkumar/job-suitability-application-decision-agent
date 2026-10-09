@@ -1,0 +1,218 @@
+{
+  "seed": 20260910,
+  "n_cases": 500,
+  "policies": {
+    "P0": {
+      "n": 500,
+      "accuracy": 0.28,
+      "per_action": {
+        "apply": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "research": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "request human help": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "skip": {
+          "precision": 0.28,
+          "recall": 1.0
+        }
+      },
+      "decision_cost": 36000.0,
+      "information_cost": 0.0,
+      "total_cost": 36000.0,
+      "average_checks": 0.0,
+      "human_review_rate": 0.0,
+      "confusion_matrix": {
+        "apply": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 0,
+          "skip": 123
+        },
+        "research": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 0,
+          "skip": 130
+        },
+        "request human help": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 0,
+          "skip": 107
+        },
+        "skip": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 0,
+          "skip": 140
+        }
+      }
+    },
+    "P2": {
+      "n": 500,
+      "accuracy": 0.458,
+      "per_action": {
+        "apply": {
+          "precision": 0.8369565217391305,
+          "recall": 0.6260162601626016
+        },
+        "research": {
+          "precision": 0.603448275862069,
+          "recall": 0.5384615384615384
+        },
+        "request human help": {
+          "precision": 0.2808219178082192,
+          "recall": 0.7663551401869159
+        },
+        "skip": {
+          "precision": null,
+          "recall": 0.0
+        }
+      },
+      "decision_cost": 633.0,
+      "information_cost": 1127.5000000000032,
+      "total_cost": 1760.5000000000032,
+      "average_checks": 3.0,
+      "human_review_rate": 0.584,
+      "confusion_matrix": {
+        "apply": {
+          "apply": 77,
+          "research": 14,
+          "request human help": 32,
+          "skip": 0
+        },
+        "research": {
+          "apply": 9,
+          "research": 70,
+          "request human help": 51,
+          "skip": 0
+        },
+        "request human help": {
+          "apply": 6,
+          "research": 19,
+          "request human help": 82,
+          "skip": 0
+        },
+        "skip": {
+          "apply": 0,
+          "research": 13,
+          "request human help": 127,
+          "skip": 0
+        }
+      }
+    },
+    "P3": {
+      "n": 500,
+      "accuracy": 0.214,
+      "per_action": {
+        "apply": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "research": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "request human help": {
+          "precision": 0.214,
+          "recall": 1.0
+        },
+        "skip": {
+          "precision": null,
+          "recall": 0.0
+        }
+      },
+      "decision_cost": 786.0,
+      "information_cost": 0.0,
+      "total_cost": 786.0,
+      "average_checks": 0.0,
+      "human_review_rate": 1.0,
+      "confusion_matrix": {
+        "apply": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 123,
+          "skip": 0
+        },
+        "research": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 130,
+          "skip": 0
+        },
+        "request human help": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 107,
+          "skip": 0
+        },
+        "skip": {
+          "apply": 0,
+          "research": 0,
+          "request human help": 140,
+          "skip": 0
+        }
+      }
+    },
+    "P3b": {
+      "n": 500,
+      "accuracy": 0.404,
+      "per_action": {
+        "apply": {
+          "precision": 0.3948339483394834,
+          "recall": 0.8699186991869918
+        },
+        "research": {
+          "precision": 0.4148471615720524,
+          "recall": 0.7307692307692307
+        },
+        "request human help": {
+          "precision": null,
+          "recall": 0.0
+        },
+        "skip": {
+          "precision": null,
+          "recall": 0.0
+        }
+      },
+      "decision_cost": 1775.0,
+      "information_cost": 327.4999999999974,
+      "total_cost": 2102.4999999999973,
+      "average_checks": 2.0,
+      "human_review_rate": 0.0,
+      "confusion_matrix": {
+        "apply": {
+          "apply": 107,
+          "research": 16,
+          "request human help": 0,
+          "skip": 0
+        },
+        "research": {
+          "apply": 35,
+          "research": 95,
+          "request human help": 0,
+          "skip": 0
+        },
+        "request human help": {
+          "apply": 52,
+          "research": 55,
+          "request human help": 0,
+          "skip": 0
+        },
+        "skip": {
+          "apply": 77,
+          "research": 63,
+          "request human help": 0,
+          "skip": 0
+        }
+      }
+    }
+  }
+}
